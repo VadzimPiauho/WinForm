@@ -39,7 +39,7 @@ namespace dz1_3
             if (e.Button == MouseButtons.Right)
             {
                 message = "Вы нажали правую кнопку мыши.";
-                this.Text = "Ширина =" + this.Height.ToString() + "; Высота =" + this.Width.ToString();
+                this.Text = "Высота Y =" + this.Height.ToString() + "; Ширина X =" + this.Width.ToString();
             }
             if (e.Button == MouseButtons.Left)
             {
@@ -49,13 +49,21 @@ namespace dz1_3
                 }
                 else
                 {
-                    if (this.Height>0&& this.Height<10|| this.Width>0&& this.Width<10)
+                    if (e.X>0&& e.X < 50|| e.Y> 0&& e.Y < 50)
                     {
                         message = "Вы нажали левую кнопку мыши снаружи";
                     }
-                    if (this.Height > 0 && this.Height < 10 || this.Width > 0 && this.Width < 10)
+                    if (e.X > this.Width-50 && e.X < this.Width || e.Y > this.Height-50 && e.Y < this.Height)
                     {
                         message = "Вы нажали левую кнопку мыши снаружи";
+                    }
+                    if ((e.X > 50 && e.X < this.Width - 50) && (e.Y > 50 && e.Y < this.Height - 50))
+                    {
+                        message = "Вы нажали левую кнопку мыши внутри";
+                    }
+                    if (e.Y == 50 || e.Y == this.Height - 50 || e.X == 50 || e.X == this.Width - 50)
+                    {
+                        message = "Вы нажали левую кнопку мыши на границе";
                     }
 
                 }
