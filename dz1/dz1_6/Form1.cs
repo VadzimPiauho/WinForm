@@ -42,6 +42,15 @@ namespace dz1_6
         {
             textBoxDaySet.Text = null;
         }
-        
+
+        private void FormDay_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxDaySet_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

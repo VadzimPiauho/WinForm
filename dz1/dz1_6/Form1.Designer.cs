@@ -61,6 +61,7 @@
             this.textBoxDaySet.Size = new System.Drawing.Size(187, 20);
             this.textBoxDaySet.TabIndex = 1;
             this.textBoxDaySet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxDaySet.TextChanged += new System.EventHandler(this.textBoxDaySet_TextChanged);
             this.textBoxDaySet.Enter += new System.EventHandler(this.textBoxDaySet_Enter);
             // 
             // textBoxDayGet
@@ -84,6 +85,7 @@
             this.Controls.Add(this.buttonDayGet);
             this.Name = "FormDay";
             this.Text = "День недели";
+            this.Load += new System.EventHandler(this.FormDay_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
