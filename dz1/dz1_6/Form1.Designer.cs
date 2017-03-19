@@ -65,8 +65,10 @@
             // 
             // textBoxDayGet
             // 
+            this.textBoxDayGet.Enabled = false;
             this.textBoxDayGet.Location = new System.Drawing.Point(117, 185);
             this.textBoxDayGet.Name = "textBoxDayGet";
+            this.textBoxDayGet.ReadOnly = true;
             this.textBoxDayGet.Size = new System.Drawing.Size(187, 20);
             this.textBoxDayGet.TabIndex = 1;
             this.textBoxDayGet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
