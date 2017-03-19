@@ -10,11 +10,38 @@ using System.Windows.Forms;
 
 namespace dz1_6
 {
-    public partial class Form1 : Form
+    public partial class FormDay : Form
     {
-        public Form1()
+        public FormDay()
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime dt = new DateTime();
+            try
+            {
+                dt = DateTime.Parse(textBoxDaySet.Text);
+                textBoxDayGet.Text = dt.ToString("dddd");
+            }
+            catch (Exception)
+            {
+
+                textBoxDaySet.Text = "Некоректные данные";
+            }
+        }
+
+        private void buttonDayClear_Click(object sender, EventArgs e)
+        {
+            textBoxDaySet.Clear();
+            textBoxDayGet.Clear();
+        }
+
+        private void textBoxDaySet_Enter(object sender, EventArgs e)
+        {
+            textBoxDaySet.Text = null;
+        }
+        
     }
 }
