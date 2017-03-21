@@ -15,6 +15,10 @@ namespace dz1_4
         int count = 1;
         int oldX;
         int oldY;
+        int LabelWidth;
+        int LabelHeight;
+        string LabelName;
+        int LabelTxt = 0;
         public Form1()
         {
             InitializeComponent();
@@ -70,10 +74,14 @@ namespace dz1_4
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            
 
+            //Text = "Координаты мыши: х=" + (e.X+this.Left).ToString() + "; y=" + e.Y.ToString();
+
+            //Text="Координаты мыши: х=" + (Cursor.Position.X - this.Location.X - 8).ToString() + "; y=" + (Cursor.Position.Y - this.Location.Y - 31).ToString();
+            //return "Координаты мыши: х=" + e.X.ToString() + "; y=" + e.Y.ToString();
         }
+
+         
 
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
@@ -82,29 +90,91 @@ namespace dz1_4
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && e.Clicks == 1)
+            
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (Control c in Controls)
+                {
+                    if (c.GetType() == typeof(Label))
+                    {
+                        
+                        if (e.X+ c.Left >= c.Left &&e.Y+ c.Top >= c.Top&& e.X+ c.Left <= c.Left + c.Width && e.Y+ c.Top <= c.Top+c.Height)
+                        {
+                            if ((Int32.Parse( c.Text)> LabelTxt))
+                            {
+                                LabelWidth = ((Label)c).Width;
+                                LabelHeight = ((Label)c).Height;
+                                LabelName = ((Label)c).Text;
+                                oldX = ((Label)c).Location.X;
+                                oldY = ((Label)c).Location.Y;
+                                LabelTxt = Int32.Parse(c.Text);
+                            }
+                        }
+                    }
+                }
+                Text = $"Площадь {LabelWidth * LabelHeight} Х = {oldX} Y = {oldY} номер {LabelName}";
+                LabelTxt = 0;
+                //Text = $"Площадь {WiewDelControl.Width* WiewDelControl.Height} Х = {WiewDelControl.Location.X} Y = {WiewDelControl.Location.Y}";
+                //WiewDelControl.Text = "0";
+            }
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
             {
                 oldX = e.X;
                 oldY = e.Y;
-
             }
-            if (e.Button == MouseButtons.Left && e.Clicks == 2)
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left&&(oldY!=0|| oldX!=0))
             {
-                //=================================
-                // создаем объект класса Label
                 Label m_label = new Label();
+                m_label.AutoSize = false;
+                m_label.BorderStyle = BorderStyle.Fixed3D;
                 // задаём позицию надписи относительно будущего родителя
-                m_label.Location = new Point(e.X - oldX, e.Y - oldY);
-                // задаем размер надписи
-                m_label.Size = new Size(100, 100);
-                // задаем текст надписи
-                m_label.Text = $"{count}";
-                m_label.ForeColor = Color.Red;
+                if (e.X>oldX&&e.Y>oldY)
+                {
+                    m_label.Location = new Point(oldX, oldY);
+                }
+                if (e.X > oldX && e.Y < oldY)
+                {
+                    m_label.Location = new Point(oldX, e.Y);
+                }
+                if (e.X < oldX && e.Y < oldY)
+                {
+                    m_label.Location = new Point(e.X, e.Y);
+                }
+                if (e.X < oldX && e.Y > oldY)
+                {
+                    m_label.Location = new Point(e.X, oldY);
+                }
 
-                // добавляем статический текст в коллекцию элементов формы
-                this.Controls.Add(m_label);
-                //===============================
-
+                if (Math.Abs(e.X - oldX)<10|| Math.Abs(e.Y - oldY)<10)
+                {
+                    MessageBox.Show("Невозможно создать статик меньше чем 10х10");
+                }
+                else
+                {
+                    // задаем размер надписи
+                    m_label.Size = new Size(Math.Abs(e.X - oldX), Math.Abs(e.Y - oldY));
+                    // задаем текст надписи
+                    m_label.Text = $"{count}";
+                    m_label.ForeColor = Color.Red;
+                    count++;
+                    // добавляем статический текст в коллекцию элементов формы
+                    this.Controls.Add(m_label);
+                    m_label.MouseClick += Form1_MouseClick;
+                    m_label.MouseMove += Form1_MouseMove;
+                    //===============================
+                }
+            }
+            else
+            {
+                MessageBox.Show("Левая клавиша мыши не была нажата");
             }
         }
     }

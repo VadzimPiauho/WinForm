@@ -33,11 +33,11 @@
             this.textBoxRes = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSek = new System.Windows.Forms.RadioButton();
+            this.radioButtonMin = new System.Windows.Forms.RadioButton();
+            this.radioButtonDay = new System.Windows.Forms.RadioButton();
+            this.radioButtonMonts = new System.Windows.Forms.RadioButton();
+            this.radioButtonYears = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,7 @@
             this.textBoxEnter.Size = new System.Drawing.Size(158, 20);
             this.textBoxEnter.TabIndex = 0;
             this.textBoxEnter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxEnter.TextChanged += new System.EventHandler(this.textBoxEnter_TextChanged);
             this.textBoxEnter.Enter += new System.EventHandler(this.textBoxEnter_Enter);
             // 
             // buttonRun
@@ -81,11 +82,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton6);
-            this.groupBox1.Controls.Add(this.radioButton5);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.radioButtonSek);
+            this.groupBox1.Controls.Add(this.radioButtonMin);
+            this.groupBox1.Controls.Add(this.radioButtonDay);
+            this.groupBox1.Controls.Add(this.radioButtonMonts);
+            this.groupBox1.Controls.Add(this.radioButtonYears);
             this.groupBox1.Location = new System.Drawing.Point(13, 48);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(136, 159);
@@ -93,57 +94,57 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "формат вывода";
             // 
-            // radioButton1
+            // radioButtonSek
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(20, 28);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(62, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "в годах";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButtonSek.AutoSize = true;
+            this.radioButtonSek.Location = new System.Drawing.Point(20, 116);
+            this.radioButtonSek.Name = "radioButtonSek";
+            this.radioButtonSek.Size = new System.Drawing.Size(80, 17);
+            this.radioButtonSek.TabIndex = 0;
+            this.radioButtonSek.Text = "в секундах";
+            this.radioButtonSek.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButtonMin
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(20, 47);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(77, 17);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.Text = "в месяцах";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonMin.AutoSize = true;
+            this.radioButtonMin.Location = new System.Drawing.Point(20, 93);
+            this.radioButtonMin.Name = "radioButtonMin";
+            this.radioButtonMin.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonMin.TabIndex = 0;
+            this.radioButtonMin.Text = "в минутах";
+            this.radioButtonMin.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioButtonDay
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(20, 70);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(57, 17);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.Text = "в днях";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButtonDay.AutoSize = true;
+            this.radioButtonDay.Location = new System.Drawing.Point(20, 70);
+            this.radioButtonDay.Name = "radioButtonDay";
+            this.radioButtonDay.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonDay.TabIndex = 0;
+            this.radioButtonDay.Text = "в днях";
+            this.radioButtonDay.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // radioButtonMonts
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(20, 93);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(75, 17);
-            this.radioButton5.TabIndex = 0;
-            this.radioButton5.Text = "в минутах";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButtonMonts.AutoSize = true;
+            this.radioButtonMonts.Location = new System.Drawing.Point(20, 47);
+            this.radioButtonMonts.Name = "radioButtonMonts";
+            this.radioButtonMonts.Size = new System.Drawing.Size(77, 17);
+            this.radioButtonMonts.TabIndex = 0;
+            this.radioButtonMonts.Text = "в месяцах";
+            this.radioButtonMonts.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // radioButtonYears
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(20, 116);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(80, 17);
-            this.radioButton6.TabIndex = 0;
-            this.radioButton6.Text = "в секундах";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButtonYears.AutoSize = true;
+            this.radioButtonYears.Checked = true;
+            this.radioButtonYears.Location = new System.Drawing.Point(20, 28);
+            this.radioButtonYears.Name = "radioButtonYears";
+            this.radioButtonYears.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonYears.TabIndex = 0;
+            this.radioButtonYears.TabStop = true;
+            this.radioButtonYears.Text = "в годах";
+            this.radioButtonYears.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -171,11 +172,11 @@
         private System.Windows.Forms.TextBox textBoxRes;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonSek;
+        private System.Windows.Forms.RadioButton radioButtonMin;
+        private System.Windows.Forms.RadioButton radioButtonDay;
+        private System.Windows.Forms.RadioButton radioButtonMonts;
+        private System.Windows.Forms.RadioButton radioButtonYears;
     }
 }
 

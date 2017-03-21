@@ -29,7 +29,37 @@ namespace dz1_7
             try
             {
                 dt = DateTime.Parse(textBoxEnter.Text);
-                textBoxRes.Text = dt.ToString("dddd");
+                DateTime newDate = DateTime.Now;                
+                TimeSpan ts = dt - newDate;
+                if (dt>newDate)
+                {
+                    if (radioButtonDay.Checked == true)
+                    {
+                        textBoxRes.Text = ts.Days.ToString();
+                    }
+                    if (radioButtonMin.Checked == true)
+                    {
+                        textBoxRes.Text = ts.Minutes.ToString();
+                    }
+                    if (radioButtonMonts.Checked == true)
+                    {
+                        textBoxRes.Text = (dt.Month-newDate.Month).ToString();
+                    }
+                    if (radioButtonSek.Checked == true)
+                    {
+                        textBoxRes.Text = ts.Seconds.ToString();
+                    }
+                    if (radioButtonYears.Checked == true)
+                    {
+                        textBoxRes.Text = (dt.Year - newDate.Year).ToString();
+                    }
+                }
+                else
+                {
+                    textBoxRes.Text = "Указанная дата уже прошла";
+                }
+               
+                //textBoxRes.Text = dt.ToString("dddd");
             }
             catch (Exception)
             {
@@ -40,7 +70,12 @@ namespace dz1_7
 
         private void textBoxEnter_Enter(object sender, EventArgs e)
         {
-            textBoxRes.Text = null;
+            textBoxEnter.Text = null;
+        }
+
+        private void textBoxEnter_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
