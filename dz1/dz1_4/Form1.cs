@@ -26,51 +26,8 @@ namespace dz1_4
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
-
-
-        //private void Form1_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    //определим какую кнопку мыши нажал пользователь
-        //    String message = "";
-        //    if (e.Button == MouseButtons.Right)
-        //    {
-        //        message = "Вы нажали правую кнопку мыши.";
-        //        this.Text = "Высота Y =" + this.Height.ToString() + "; Ширина X =" + this.Width.ToString();
-        //    }
-        //    if (e.Button == MouseButtons.Left)
-        //    {
-        //        if (Control.ModifierKeys == Keys.Control)
-        //        {
-        //            this.Close();
-        //        }
-        //        else
-        //        {
-        //            if (e.X > 0 && e.X < 50 || e.Y > 0 && e.Y < 50)
-        //            {
-        //                message = "Вы нажали левую кнопку мыши снаружи";
-        //            }
-        //            if (e.X > this.Width - 50 && e.X < this.Width || e.Y > this.Height - 50 && e.Y < this.Height)
-        //            {
-        //                message = "Вы нажали левую кнопку мыши снаружи";
-        //            }
-        //            if ((e.X > 50 && e.X < this.Width - 50) && (e.Y > 50 && e.Y < this.Height - 50))
-        //            {
-        //                message = "Вы нажали левую кнопку мыши внутри";
-        //            }
-        //            if (e.Y == 50 || e.Y == this.Height - 50 || e.X == 50 || e.X == this.Width - 50)
-        //            {
-        //                message = "Вы нажали левую кнопку мыши на границе";
-        //            }
-
-        //        }
-        //    }
-
-        //    //выведем сообщение в диалоговое окно
-        //    String caption = "Клик мыши";
-        //    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //}
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -83,8 +40,6 @@ namespace dz1_4
             //Text ="Координаты мыши: х=" + (Cursor.Position.X - this.Location.X - borderVert).ToString() + "; y=" + (Cursor.Position.Y - this.Location.Y - borderCapt - borderHoriz).ToString();
             //return "Координаты мыши: х=" + e.X.ToString() + "; y=" + e.Y.ToString();
         }
-
-         
 
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
@@ -178,12 +133,64 @@ namespace dz1_4
                     this.Controls.Add(m_label);
                     m_label.MouseClick += Form1_MouseClick;
                     m_label.MouseMove += Form1_MouseMove;
+                    m_label.MouseDoubleClick += Form1_MouseDoubleClick;
                     //===============================
                 }
             }
             else
             {
                 MessageBox.Show("Для создания контрола нажмите левую клавишу");
+            }
+        }
+
+        private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+
+                foreach (Control c in Controls)
+                {
+                    if (c.GetType() == typeof(Label))
+                    {
+                        Point location = c.PointToScreen(Point.Empty);
+
+                        if (MousePosition.X >= location.X && MousePosition.Y >= location.Y && MousePosition.X <= location.X + c.Width && MousePosition.Y <= location.Y + c.Height)
+                        {
+                            if ((Int32.Parse(c.Text) < LabelTxt)|| LabelTxt==0)
+                            {
+                                LabelName = ((Label)c).Text;
+                                LabelTxt = Int32.Parse(c.Text);
+                            }
+                        }
+                    }
+                }
+                foreach (Control c in Controls)
+                {
+                    if (c.GetType() == typeof(Label))
+                    {
+                        Point location = c.PointToScreen(Point.Empty);
+
+                        if (MousePosition.X >= location.X && MousePosition.Y >= location.Y && MousePosition.X <= location.X + c.Width && MousePosition.Y <= location.Y + c.Height)
+                        {
+                            if ((Int32.Parse(c.Text) == LabelTxt))
+                            {
+                                this.Controls.Remove(c);
+                                c.MouseClick -= Form1_MouseClick;
+                                c.MouseMove -= Form1_MouseMove;
+                                c.MouseDoubleClick -= Form1_MouseDoubleClick;
+                            }
+                        }
+                    }
+                }
+                if (Controls.Count == 0 || LabelTxt == 0)
+                {
+                    MessageBox.Show("Нет контролов");
+                    count = 1;
+                }
+                Text = $"Контрол с номером удален {LabelName}";
+                LabelTxt = 0;
+                //Text = $"Площадь {WiewDelControl.Width* WiewDelControl.Height} Х = {WiewDelControl.Location.X} Y = {WiewDelControl.Location.Y}";
+                //WiewDelControl.Text = "0";
             }
         }
     }
