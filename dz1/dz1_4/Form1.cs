@@ -76,8 +76,11 @@ namespace dz1_4
         {
 
             //Text = "Координаты мыши: х=" + (e.X+this.Left).ToString() + "; y=" + e.Y.ToString();
-
-            //Text="Координаты мыши: х=" + (Cursor.Position.X - this.Location.X - 8).ToString() + "; y=" + (Cursor.Position.Y - this.Location.Y - 31).ToString();
+            var borderVert = SystemInformation.VerticalResizeBorderThickness;
+            var borderCapt = SystemInformation.CaptionHeight;
+            var borderHoriz = SystemInformation.HorizontalResizeBorderThickness;
+            //Text ="Координаты мыши: х=" + (MousePosition.X).ToString() + "; y=" + (MousePosition.Y).ToString();
+            //Text ="Координаты мыши: х=" + (Cursor.Position.X - this.Location.X - borderVert).ToString() + "; y=" + (Cursor.Position.Y - this.Location.Y - borderCapt - borderHoriz).ToString();
             //return "Координаты мыши: х=" + e.X.ToString() + "; y=" + e.Y.ToString();
         }
 
@@ -93,12 +96,14 @@ namespace dz1_4
             
             if (e.Button == MouseButtons.Right)
             {
+               
                 foreach (Control c in Controls)
                 {
                     if (c.GetType() == typeof(Label))
                     {
+                        Point location = c.PointToScreen(Point.Empty);
                         
-                        if (e.X+ c.Left >= c.Left &&e.Y+ c.Top >= c.Top&& e.X+ c.Left <= c.Left + c.Width && e.Y+ c.Top <= c.Top+c.Height)
+                        if (MousePosition.X>= location.X && MousePosition.Y>= location.Y && MousePosition.X<= location.X + c.Width && MousePosition.Y<= location.Y + c.Height)
                         {
                             if ((Int32.Parse( c.Text)> LabelTxt))
                             {
@@ -111,6 +116,10 @@ namespace dz1_4
                             }
                         }
                     }
+                }
+                if (Controls.Count == 0|| LabelTxt==0)
+                {
+                    MessageBox.Show("Нет контролов");
                 }
                 Text = $"Площадь {LabelWidth * LabelHeight} Х = {oldX} Y = {oldY} номер {LabelName}";
                 LabelTxt = 0;
@@ -174,7 +183,7 @@ namespace dz1_4
             }
             else
             {
-                MessageBox.Show("Левая клавиша мыши не была нажата");
+                MessageBox.Show("Для создания контрола нажмите левую клавишу");
             }
         }
     }
