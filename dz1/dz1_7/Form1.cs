@@ -29,17 +29,17 @@ namespace dz1_7
             try
             {
                 dt = DateTime.Parse(textBoxEnter.Text);
-                DateTime newDate = DateTime.Now;                
+                DateTime newDate = DateTime.Now;
                 TimeSpan ts = dt - newDate;
                 if (dt>newDate)
                 {
                     if (radioButtonDay.Checked == true)
                     {
-                        textBoxRes.Text = ts.Days.ToString();
+                        textBoxRes.Text = ((int)ts.TotalDays).ToString();
                     }
                     if (radioButtonMin.Checked == true)
                     {
-                        textBoxRes.Text = ts.Minutes.ToString();
+                        textBoxRes.Text = ((int)ts.TotalMinutes).ToString();
                     }
                     if (radioButtonMonts.Checked == true)
                     {
@@ -47,7 +47,7 @@ namespace dz1_7
                     }
                     if (radioButtonSek.Checked == true)
                     {
-                        textBoxRes.Text = ts.Seconds.ToString();
+                        textBoxRes.Text = ((int)ts.TotalSeconds).ToString();
                     }
                     if (radioButtonYears.Checked == true)
                     {
