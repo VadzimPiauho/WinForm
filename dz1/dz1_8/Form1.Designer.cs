@@ -282,6 +282,8 @@
             this.textBoxCoca.Size = new System.Drawing.Size(52, 20);
             this.textBoxCoca.TabIndex = 2;
             this.textBoxCoca.Text = "0";
+            this.textBoxCoca.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxCoca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
             // 
             // textBox4
             // 
@@ -300,6 +302,8 @@
             this.textBoxFri.Size = new System.Drawing.Size(52, 20);
             this.textBoxFri.TabIndex = 2;
             this.textBoxFri.Text = "0";
+            this.textBoxFri.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxFri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
             // 
             // textBox3
             // 
@@ -318,6 +322,8 @@
             this.textBoxGamb.Size = new System.Drawing.Size(52, 20);
             this.textBoxGamb.TabIndex = 2;
             this.textBoxGamb.Text = "0";
+            this.textBoxGamb.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxGamb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
             // 
             // textBox2
             // 
@@ -336,6 +342,8 @@
             this.textBoxDog.Size = new System.Drawing.Size(52, 20);
             this.textBoxDog.TabIndex = 2;
             this.textBoxDog.Text = "0";
+            this.textBoxDog.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxDog.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
             // 
             // textBox1
             // 
