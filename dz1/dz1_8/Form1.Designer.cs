@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBoxAvto = new System.Windows.Forms.GroupBox();
             this.comboBoxBenz = new System.Windows.Forms.ComboBox();
             this.labelCenaBenz = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@
             this.labelItogo = new System.Windows.Forms.Label();
             this.labelItogoRub = new System.Windows.Forms.Label();
             this.buttonItogo = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBoxAvto.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBoxOplataBenz.SuspendLayout();
@@ -96,11 +98,20 @@
             // 
             // comboBoxBenz
             // 
+            this.comboBoxBenz.CausesValidation = false;
+            this.comboBoxBenz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBenz.FormattingEnabled = true;
+            this.comboBoxBenz.Items.AddRange(new object[] {
+            "АИ-92",
+            "АИ-95",
+            "АИ-98",
+            "Газ",
+            "Дизтопливо"});
             this.comboBoxBenz.Location = new System.Drawing.Point(70, 58);
             this.comboBoxBenz.Name = "comboBoxBenz";
             this.comboBoxBenz.Size = new System.Drawing.Size(134, 21);
             this.comboBoxBenz.TabIndex = 5;
+            this.comboBoxBenz.SelectedIndexChanged += new System.EventHandler(this.comboBoxBenz_VisibleChanged);
             // 
             // labelCenaBenz
             // 
@@ -141,6 +152,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Количество";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -151,6 +163,7 @@
             this.radioButton2.TabIndex = 0;
             this.radioButton2.Text = "Сумма";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // labelRubBenz
             // 
@@ -183,8 +196,13 @@
             // 
             this.textBox10.Location = new System.Drawing.Point(140, 200);
             this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(64, 20);
             this.textBox10.TabIndex = 2;
+            this.textBox10.Text = "0";
+            this.textBox10.Enter += new System.EventHandler(this.textBox9_Enter);
+            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBox10.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // textBoxCenaBenz
             // 
@@ -193,14 +211,20 @@
             this.textBoxCenaBenz.ReadOnly = true;
             this.textBoxCenaBenz.Size = new System.Drawing.Size(134, 20);
             this.textBoxCenaBenz.TabIndex = 2;
-            this.textBoxCenaBenz.Text = "6.40";
+            this.textBoxCenaBenz.Text = "1.13";
             // 
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(140, 164);
+            this.textBox9.MaxLength = 3;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(64, 20);
             this.textBox9.TabIndex = 2;
+            this.textBox9.Text = "0";
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+            this.textBox9.Enter += new System.EventHandler(this.textBox9_Enter);
+            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBox9.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // groupBoxOplataBenz
             // 
@@ -217,11 +241,12 @@
             // labelItogoBenz
             // 
             this.labelItogoBenz.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelItogoBenz.Location = new System.Drawing.Point(58, 36);
+            this.labelItogoBenz.Location = new System.Drawing.Point(5, 36);
             this.labelItogoBenz.Name = "labelItogoBenz";
-            this.labelItogoBenz.Size = new System.Drawing.Size(117, 56);
+            this.labelItogoBenz.Size = new System.Drawing.Size(170, 56);
             this.labelItogoBenz.TabIndex = 1;
             this.labelItogoBenz.Text = "0.00";
+            this.labelItogoBenz.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelItogoRubBenz
             // 
@@ -277,13 +302,16 @@
             // textBoxCoca
             // 
             this.textBoxCoca.Location = new System.Drawing.Point(180, 148);
+            this.textBoxCoca.MaxLength = 3;
             this.textBoxCoca.Name = "textBoxCoca";
             this.textBoxCoca.ReadOnly = true;
             this.textBoxCoca.Size = new System.Drawing.Size(52, 20);
             this.textBoxCoca.TabIndex = 2;
             this.textBoxCoca.Text = "0";
             this.textBoxCoca.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxCoca.Enter += new System.EventHandler(this.textBox9_Enter);
             this.textBoxCoca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBoxCoca.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // textBox4
             // 
@@ -297,13 +325,16 @@
             // textBoxFri
             // 
             this.textBoxFri.Location = new System.Drawing.Point(180, 118);
+            this.textBoxFri.MaxLength = 3;
             this.textBoxFri.Name = "textBoxFri";
             this.textBoxFri.ReadOnly = true;
             this.textBoxFri.Size = new System.Drawing.Size(52, 20);
             this.textBoxFri.TabIndex = 2;
             this.textBoxFri.Text = "0";
             this.textBoxFri.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxFri.Enter += new System.EventHandler(this.textBox9_Enter);
             this.textBoxFri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBoxFri.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // textBox3
             // 
@@ -317,13 +348,16 @@
             // textBoxGamb
             // 
             this.textBoxGamb.Location = new System.Drawing.Point(180, 88);
+            this.textBoxGamb.MaxLength = 3;
             this.textBoxGamb.Name = "textBoxGamb";
             this.textBoxGamb.ReadOnly = true;
             this.textBoxGamb.Size = new System.Drawing.Size(52, 20);
             this.textBoxGamb.TabIndex = 2;
             this.textBoxGamb.Text = "0";
             this.textBoxGamb.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxGamb.Enter += new System.EventHandler(this.textBox9_Enter);
             this.textBoxGamb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBoxGamb.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // textBox2
             // 
@@ -337,13 +371,16 @@
             // textBoxDog
             // 
             this.textBoxDog.Location = new System.Drawing.Point(180, 58);
+            this.textBoxDog.MaxLength = 3;
             this.textBoxDog.Name = "textBoxDog";
             this.textBoxDog.ReadOnly = true;
             this.textBoxDog.Size = new System.Drawing.Size(52, 20);
             this.textBoxDog.TabIndex = 2;
             this.textBoxDog.Text = "0";
             this.textBoxDog.TextChanged += new System.EventHandler(this.textBoxDog_TextChanged);
+            this.textBoxDog.Enter += new System.EventHandler(this.textBox9_Enter);
             this.textBoxDog.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBoxDog.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // textBox1
             // 
@@ -412,11 +449,12 @@
             // labelItogoCafe
             // 
             this.labelItogoCafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelItogoCafe.Location = new System.Drawing.Point(58, 36);
+            this.labelItogoCafe.Location = new System.Drawing.Point(5, 36);
             this.labelItogoCafe.Name = "labelItogoCafe";
-            this.labelItogoCafe.Size = new System.Drawing.Size(117, 56);
+            this.labelItogoCafe.Size = new System.Drawing.Size(170, 56);
             this.labelItogoCafe.TabIndex = 1;
             this.labelItogoCafe.Text = "0.00";
+            this.labelItogoCafe.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelItogoRubCafe
             // 
@@ -466,6 +504,10 @@
             this.buttonItogo.Text = "ПОДСЧИТАТЬ";
             this.buttonItogo.UseVisualStyleBackColor = true;
             this.buttonItogo.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
             // 
             // BestOil
             // 
@@ -533,6 +575,7 @@
         private System.Windows.Forms.CheckBox checkBoxFri;
         private System.Windows.Forms.CheckBox checkBoxGamb;
         private System.Windows.Forms.CheckBox checkBoxDog;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
