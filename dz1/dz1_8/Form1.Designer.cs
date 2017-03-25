@@ -200,8 +200,9 @@
             this.textBox10.Size = new System.Drawing.Size(64, 20);
             this.textBox10.TabIndex = 2;
             this.textBox10.Text = "0";
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             this.textBox10.Enter += new System.EventHandler(this.textBox9_Enter);
-            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDog_KeyPress);
+            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox10_KeyPress);
             this.textBox10.Leave += new System.EventHandler(this.textBoxDog_Leave);
             // 
             // textBoxCenaBenz
@@ -508,6 +509,7 @@
             // timer1
             // 
             this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // BestOil
             // 
