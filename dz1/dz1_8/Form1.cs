@@ -222,7 +222,7 @@ namespace dz1_8
                 if (temp==DialogResult.Yes)
                 {
                     timer1.Stop();
-                    TOTALSIZE  double.Parse(labelItogo.Text);
+                    TOTALSIZE += double.Parse(labelItogo.Text);
                     Text = $"BestOil прибыль за сегодня = {TOTALSIZE}";
                     labelItogo.Text = "0.00";
                     labelItogoCafe.Text = "0.00";
