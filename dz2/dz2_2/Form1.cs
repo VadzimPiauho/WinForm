@@ -33,14 +33,14 @@ namespace dz2_2
                 listBox.Items.Add(textBoxLast.Text);
                 listBox.Items.Add(textBoxMail.Text);
                 listBox.Items.Add(textBoxPhone.Text);
-                textBoxFirst.Focus();
-                textBoxFirst.Clear();
-                textBoxLast.Focus();
-                textBoxLast.Clear();
-                textBoxMail.Focus();
-                textBoxMail.Clear();
-                textBoxPhone.Focus();
-                textBoxPhone.Clear();
+                //textBoxFirst.Focus();
+                //textBoxFirst.Clear();
+                //textBoxLast.Focus();
+                //textBoxLast.Clear();
+                //textBoxMail.Focus();
+                //textBoxMail.Clear();
+                //textBoxPhone.Focus();
+                //textBoxPhone.Clear();
             }
             else
             {
