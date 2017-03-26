@@ -16,5 +16,7 @@ namespace dz2_2
         {
             InitializeComponent();
         }
+
+
     }
 }
