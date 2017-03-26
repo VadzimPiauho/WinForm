@@ -20,11 +20,7 @@ namespace dz2
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void button2_Click(object sender, EventArgs e)
         {
             if (!File.Exists(nameFile))
@@ -38,7 +34,7 @@ namespace dz2
             {
                 using (StreamReader sr = File.OpenText(nameFile))
                 {
-                    textBox1.Text = sr.ReadToEnd();
+                    //textBox1.Text = sr.ReadToEnd();
                     var fi = new FileInfo(nameFile);
                     if (fi.Length==0)
                     {
@@ -49,6 +45,8 @@ namespace dz2
                     //{
                     //    textBox1.Text += s;
                     //    textBox1.Text += Environment.NewLine;
+                    //    progressBar1.Value += 30;
+                    //    Thread.Sleep(1000);
                     //}
                 }
             }
@@ -71,6 +69,45 @@ namespace dz2
                     {
                         sw.WriteLine($"{textBox1.Text}");
                     }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(nameFile))
+            {
+                MessageBox.Show("Файла не существует", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                FileStream fs1 = File.Create(nameFile);
+                fs1.Close();
+                MessageBox.Show("Файл успешно создан в каталоге Debug", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                using (StreamReader sr = File.OpenText(nameFile))
+                {
+                    //textBox1.Text = sr.ReadToEnd();
+                    var fi = new FileInfo(nameFile);
+                    if (progressBar1.Value ==100)
+                    {
+                        progressBar1.Value = 0;
+                    }
+                    if (fi.Length == 0)
+                    {
+                        MessageBox.Show("Файл пуст. Введите текст в textBox", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    string s = "";
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        textBox1.Text += s;
+                        textBox1.Text += Environment.NewLine;
+                        progressBar1.Value += 100 / File.ReadAllLines(nameFile).Length;
+                        //progressBar1.Value += (int)sr.BaseStream.Position; 
+                        //progressBar1.Value += 100 / ((int)fi.Length);
+                        Thread.Sleep(100);
+                    }
+                    progressBar1.Value += 100 - progressBar1.Value;
+
                 }
             }
         }
