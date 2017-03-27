@@ -38,8 +38,8 @@
             this.textBoxLast = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxMail = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonExportFiel = new System.Windows.Forms.Button();
+            this.buttonImportFile = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.buttonDell = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             // 
             this.labelFirst.Location = new System.Drawing.Point(15, 20);
             this.labelFirst.Name = "labelFirst";
-            this.labelFirst.Size = new System.Drawing.Size(100, 23);
+            this.labelFirst.Size = new System.Drawing.Size(55, 23);
             this.labelFirst.TabIndex = 0;
             this.labelFirst.Text = "Имя";
             this.labelFirst.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -60,7 +60,7 @@
             // 
             this.labelLast.Location = new System.Drawing.Point(15, 45);
             this.labelLast.Name = "labelLast";
-            this.labelLast.Size = new System.Drawing.Size(100, 23);
+            this.labelLast.Size = new System.Drawing.Size(55, 23);
             this.labelLast.TabIndex = 0;
             this.labelLast.Text = "Фамилия";
             this.labelLast.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -69,7 +69,7 @@
             // 
             this.labelMail.Location = new System.Drawing.Point(15, 70);
             this.labelMail.Name = "labelMail";
-            this.labelMail.Size = new System.Drawing.Size(100, 23);
+            this.labelMail.Size = new System.Drawing.Size(55, 23);
             this.labelMail.TabIndex = 0;
             this.labelMail.Text = "E-mail";
             this.labelMail.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -78,7 +78,7 @@
             // 
             this.labelPhone.Location = new System.Drawing.Point(15, 95);
             this.labelPhone.Name = "labelPhone";
-            this.labelPhone.Size = new System.Drawing.Size(100, 23);
+            this.labelPhone.Size = new System.Drawing.Size(55, 23);
             this.labelPhone.TabIndex = 0;
             this.labelPhone.Text = "Телефон";
             this.labelPhone.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -95,6 +95,7 @@
             this.listBox.ScrollAlwaysVisible = true;
             this.listBox.Size = new System.Drawing.Size(441, 173);
             this.listBox.TabIndex = 1;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // buttonAdd
             // 
@@ -108,55 +109,60 @@
             // 
             // textBoxFirst
             // 
-            this.textBoxFirst.Location = new System.Drawing.Point(125, 20);
+            this.textBoxFirst.Location = new System.Drawing.Point(75, 20);
+            this.textBoxFirst.MaxLength = 25;
             this.textBoxFirst.Multiline = true;
             this.textBoxFirst.Name = "textBoxFirst";
-            this.textBoxFirst.Size = new System.Drawing.Size(145, 23);
+            this.textBoxFirst.Size = new System.Drawing.Size(195, 23);
             this.textBoxFirst.TabIndex = 3;
             // 
             // textBoxLast
             // 
-            this.textBoxLast.Location = new System.Drawing.Point(125, 45);
+            this.textBoxLast.Location = new System.Drawing.Point(75, 45);
+            this.textBoxLast.MaxLength = 25;
             this.textBoxLast.Multiline = true;
             this.textBoxLast.Name = "textBoxLast";
-            this.textBoxLast.Size = new System.Drawing.Size(145, 23);
+            this.textBoxLast.Size = new System.Drawing.Size(195, 23);
             this.textBoxLast.TabIndex = 3;
             // 
             // textBoxPhone
             // 
-            this.textBoxPhone.Location = new System.Drawing.Point(125, 95);
+            this.textBoxPhone.Location = new System.Drawing.Point(75, 95);
+            this.textBoxPhone.MaxLength = 25;
             this.textBoxPhone.Multiline = true;
             this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(145, 23);
+            this.textBoxPhone.Size = new System.Drawing.Size(195, 23);
             this.textBoxPhone.TabIndex = 3;
+            this.textBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPhone_KeyPress);
             // 
             // textBoxMail
             // 
-            this.textBoxMail.Location = new System.Drawing.Point(125, 70);
+            this.textBoxMail.Location = new System.Drawing.Point(75, 70);
+            this.textBoxMail.MaxLength = 25;
             this.textBoxMail.Multiline = true;
             this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(145, 23);
+            this.textBoxMail.Size = new System.Drawing.Size(195, 23);
             this.textBoxMail.TabIndex = 3;
             // 
-            // button2
+            // buttonExportFiel
             // 
-            this.button2.Location = new System.Drawing.Point(275, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Экспорт в текстовый файл";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonExportFiel.Location = new System.Drawing.Point(275, 20);
+            this.buttonExportFiel.Name = "buttonExportFiel";
+            this.buttonExportFiel.Size = new System.Drawing.Size(155, 23);
+            this.buttonExportFiel.TabIndex = 2;
+            this.buttonExportFiel.Text = "Экспорт в текстовый файл";
+            this.buttonExportFiel.UseVisualStyleBackColor = true;
+            this.buttonExportFiel.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // buttonImportFile
             // 
-            this.button3.Location = new System.Drawing.Point(275, 45);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(155, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Импорт из текстового файла";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonImportFile.Location = new System.Drawing.Point(275, 45);
+            this.buttonImportFile.Name = "buttonImportFile";
+            this.buttonImportFile.Size = new System.Drawing.Size(155, 23);
+            this.buttonImportFile.TabIndex = 2;
+            this.buttonImportFile.Text = "Импорт из текстового файла";
+            this.buttonImportFile.UseVisualStyleBackColor = true;
+            this.buttonImportFile.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -216,8 +222,8 @@
             this.Controls.Add(this.textBoxFirst);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonImportFile);
+            this.Controls.Add(this.buttonExportFiel);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonDell);
@@ -247,8 +253,8 @@
         private System.Windows.Forms.TextBox textBoxLast;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxMail;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonExportFiel;
+        private System.Windows.Forms.Button buttonImportFile;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button buttonDell;

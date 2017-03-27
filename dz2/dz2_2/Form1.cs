@@ -27,7 +27,6 @@ namespace dz2_2
             if (this.listBox.SelectedIndex>=0)
             {
                 this.listBox.Items.RemoveAt(this.listBox.SelectedIndex);
-
             }
         }
 
@@ -44,7 +43,7 @@ namespace dz2_2
                 }
                 else
                 {
-                    listBox.Items.Add($"{textBoxFirst.Text}_{textBoxLast.Text}_{textBoxMail.Text}_{textBoxPhone.Text}");
+                    listBox.Items.Add($"{textBoxFirst.Text}\t\t{textBoxLast.Text}\t\t{textBoxMail.Text}\t\t{textBoxPhone.Text}");
                     textBoxFirst.Focus();
                     //textBoxFirst.Clear();
                     //textBoxLast.Clear();
@@ -90,15 +89,14 @@ namespace dz2_2
         {
             if (!File.Exists(nameFile))
             {
-                MessageBox.Show("Файла не существует", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Файла не существует.Файл успешно создан в каталоге Debug", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FileStream fs1 = File.Create(nameFile);
                 fs1.Close();
-                MessageBox.Show("Файл успешно создан в каталоге Debug", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 using (StreamWriter sw = File.CreateText(nameFile))
                 {
-                    if (listBox.Text != "")
+                    for (var i = 0; i < listBox.Items.Count; i++)
                     {
-                        sw.WriteLine($"{listBox.Text[0]}");
+                        sw.WriteLine($"{listBox.Items[i]}");
                     }
                 }
                 MessageBox.Show("Файл успешно обновлен", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -118,7 +116,49 @@ namespace dz2_2
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (!File.Exists(nameFile))
+            {
+                MessageBox.Show("Файла не существует", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                FileStream fs1 = File.Create(nameFile);
+                fs1.Close();
+                MessageBox.Show("Пустой файл успешно создан в каталоге Debug", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                using (StreamReader sr = File.OpenText(nameFile))
+                {
+                    //textBox1.Text = sr.ReadToEnd();
+                    var fi = new FileInfo(nameFile);
+                    if (fi.Length == 0)
+                    {
+                        MessageBox.Show("Файл пуст.", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        string s = "";
+                        while ((s = sr.ReadLine()) != null)
+                        {
+                            listBox.Items.Add(s);
+                        }
+                    }
+                }
+            }
+        }
 
+        private void textBoxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listBox.SelectedIndex >= 0)
+            {
+                listBox.Items.Add(listBox.Items[listBox.SelectedIndex]);
+            }
         }
     }
 }
