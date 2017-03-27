@@ -45,6 +45,7 @@
             this.buttonDell = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelFirst
@@ -93,7 +94,7 @@
             this.listBox.MultiColumn = true;
             this.listBox.Name = "listBox";
             this.listBox.ScrollAlwaysVisible = true;
-            this.listBox.Size = new System.Drawing.Size(441, 173);
+            this.listBox.Size = new System.Drawing.Size(545, 173);
             this.listBox.TabIndex = 1;
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
@@ -148,7 +149,7 @@
             // 
             this.buttonExportFiel.Location = new System.Drawing.Point(275, 20);
             this.buttonExportFiel.Name = "buttonExportFiel";
-            this.buttonExportFiel.Size = new System.Drawing.Size(155, 23);
+            this.buttonExportFiel.Size = new System.Drawing.Size(260, 23);
             this.buttonExportFiel.TabIndex = 2;
             this.buttonExportFiel.Text = "Экспорт в текстовый файл";
             this.buttonExportFiel.UseVisualStyleBackColor = true;
@@ -158,7 +159,7 @@
             // 
             this.buttonImportFile.Location = new System.Drawing.Point(275, 45);
             this.buttonImportFile.Name = "buttonImportFile";
-            this.buttonImportFile.Size = new System.Drawing.Size(155, 23);
+            this.buttonImportFile.Size = new System.Drawing.Size(260, 23);
             this.buttonImportFile.TabIndex = 2;
             this.buttonImportFile.Text = "Импорт из текстового файла";
             this.buttonImportFile.UseVisualStyleBackColor = true;
@@ -168,7 +169,7 @@
             // 
             this.button4.Location = new System.Drawing.Point(275, 70);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(155, 23);
+            this.button4.Size = new System.Drawing.Size(260, 23);
             this.button4.TabIndex = 2;
             this.button4.Text = "Экспорт в XML";
             this.button4.UseVisualStyleBackColor = true;
@@ -177,7 +178,7 @@
             // 
             this.button5.Location = new System.Drawing.Point(275, 95);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(155, 23);
+            this.button5.Size = new System.Drawing.Size(260, 23);
             this.button5.TabIndex = 2;
             this.button5.Text = "Импорт из XML";
             this.button5.UseVisualStyleBackColor = true;
@@ -200,6 +201,7 @@
             this.buttonEdit.TabIndex = 2;
             this.buttonEdit.Text = "Изменить";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonClear
             // 
@@ -211,11 +213,21 @@
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(430, 125);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Очистить listbox";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 325);
+            this.ClientSize = new System.Drawing.Size(545, 325);
             this.Controls.Add(this.textBoxMail);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.textBoxLast);
@@ -224,6 +236,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.buttonImportFile);
             this.Controls.Add(this.buttonExportFiel);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonDell);
@@ -260,6 +273,7 @@
         private System.Windows.Forms.Button buttonDell;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button button1;
     }
 }
 
