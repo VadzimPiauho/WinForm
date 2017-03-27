@@ -28,7 +28,7 @@ namespace dz2
                 MessageBox.Show("Файла не существует", "Инфо",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 FileStream fs1 = File.Create(nameFile);
                 fs1.Close();
-                MessageBox.Show("Файл успешно создан в каталоге Debug", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Пустой файл успешно создан в каталоге Debug", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
