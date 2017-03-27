@@ -33,6 +33,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.buttonClearTexbox = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -89,6 +90,17 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // buttonClearTexbox
+            // 
+            this.buttonClearTexbox.Font = new System.Drawing.Font("Mistral", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonClearTexbox.Location = new System.Drawing.Point(215, 190);
+            this.buttonClearTexbox.Name = "buttonClearTexbox";
+            this.buttonClearTexbox.Size = new System.Drawing.Size(295, 50);
+            this.buttonClearTexbox.TabIndex = 0;
+            this.buttonClearTexbox.Text = "Очистить texbox";
+            this.buttonClearTexbox.UseVisualStyleBackColor = true;
+            this.buttonClearTexbox.Click += new System.EventHandler(this.buttonClearTexbox_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,6 +110,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.buttonClearTexbox);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
@@ -114,6 +127,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonClearTexbox;
     }
 }
 

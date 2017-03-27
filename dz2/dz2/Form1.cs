@@ -111,5 +111,10 @@ namespace dz2
                 }
             }
         }
+
+        private void buttonClearTexbox_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
     }
 }
