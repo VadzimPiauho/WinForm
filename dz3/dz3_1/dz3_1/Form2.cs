@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace dz3_1
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
         }
 
-        private void buttonSeach_Click(object sender, EventArgs e)
+        private void buttonBrowse_Click(object sender, EventArgs e)
         {
-            Form2 form = new Form2();
-            form.Show();
+            FolderBrowserDialog BrowserDial = new FolderBrowserDialog();
+            BrowserDial.ShowDialog();
         }
     }
 }
