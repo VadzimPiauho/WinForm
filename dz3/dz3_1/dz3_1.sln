@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dz3_1", "dz3_1\dz3_1.csproj", "{60DEC144-89E7-4923-B20F-3DAB8C24CD85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dz3_2", "dz3_2\dz3_2.csproj", "{23DA3315-039C-468A-A55D-265F701D371E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{60DEC144-89E7-4923-B20F-3DAB8C24CD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60DEC144-89E7-4923-B20F-3DAB8C24CD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60DEC144-89E7-4923-B20F-3DAB8C24CD85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23DA3315-039C-468A-A55D-265F701D371E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23DA3315-039C-468A-A55D-265F701D371E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23DA3315-039C-468A-A55D-265F701D371E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23DA3315-039C-468A-A55D-265F701D371E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
