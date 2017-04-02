@@ -29,8 +29,14 @@ namespace dz3_2
             {
                 if (price < 0)
                     throw new System.Exception("Цена не может быть меньше нуля");
-                    price = value;
+                price = value;
             }
+        }
+        public Tovar(Tovar t)
+        {
+            Name = t.name;
+            Price = t.Price;
+            Opisanie = t.Opisanie;
         }
         public Tovar()
         {
@@ -44,7 +50,8 @@ namespace dz3_2
         }
         public override string ToString()
         {
-            return " Наименование: "+ Name + " Описание: " + Opisanie ;//+ "Цена: "+Price;
-}
+            return " Наименование: " + Name;// + " Описание: " + Opisanie + " Цена: "+Price;
+            //return " Наименование: " + Name + " Описание: " + Opisanie;// + " Цена: "+Price;
+        }
     }
 }

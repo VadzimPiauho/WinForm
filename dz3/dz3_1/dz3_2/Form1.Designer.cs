@@ -46,7 +46,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(316, 21);
             this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // textBox1
             // 
@@ -64,6 +64,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Добавить в список продаж";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox1
             // 
@@ -101,7 +102,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Редактировать";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button2_Click);
+            this.button3.Click += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
             // 

@@ -26,6 +26,7 @@ namespace dz3_2
                 textBox3.Text = t.Opisanie;
                 textBox2.Text = t.Price.ToString();
                 this.Text = "Редактирование товара";
+                this.button1.Text = "Обновить";
             }
             else this.Text = "Добавление товара";
         }
