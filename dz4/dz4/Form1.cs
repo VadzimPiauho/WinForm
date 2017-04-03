@@ -37,6 +37,7 @@ namespace dz4
                 textBox1.Clear();
                 textBox1.Text = sr.ReadToEnd();
                 sr.Close();
+                this.Text = openFile.FileName;
             }
             if (resDialog == DialogResult.Cancel)
             {
@@ -68,6 +69,7 @@ namespace dz4
                 StreamWriter w = new StreamWriter(openFile.FileName);
                 w.WriteLine(textBox1.Text);
                 w.Close();
+                this.Text = saveFile.FileName;
             }
             if (resDialog == DialogResult.Cancel)
             {
@@ -88,7 +90,7 @@ namespace dz4
                     FileStream fs1 = File.Create(saveFile.FileName);
                     fs1.Close();
                     openFile.FileName = saveFile.FileName;
-                    //openFile.OpenFile();
+                    this.Text = saveFile.FileName;
                 }
             }
             if (resDialog == DialogResult.Cancel)
