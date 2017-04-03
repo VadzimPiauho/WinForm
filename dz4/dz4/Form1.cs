@@ -16,6 +16,8 @@ namespace dz4
         OpenFileDialog openFile;
         SaveFileDialog saveFile;
         DialogResult resDialog;
+        string selectText;
+        int oldPositionCursor;
 
         public Form1()
         {
@@ -98,13 +100,86 @@ namespace dz4
 
         private void выделитьВсеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text!="")
+            if (textBox1.Text != "")
             {
                 textBox1.SelectAll();
             }
             else
             {
                 MessageBox.Show("Пусто");
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.SelectionLength > 0)
+            {
+                textBox1.Copy();
+            }
+            //if (textBox1.SelectedText != "")
+            //{
+            //    
+            //    selectText = textBox1.SelectedText;
+            //    
+            //}
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            textBox1.Paste();
+            //oldPositionCursor = textBox1.SelectionStart + textBox1.SelectionLength;
+            //textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, selectText);
+            //textBox1.SelectionStart = oldPositionCursor;
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            if (textBox1.SelectedText != "")
+            {
+                textBox1.Cut();
+            }
+            //if (textBox1.SelectedText != "")
+            //{
+            //    selectText = textBox1.SelectedText;
+            //    oldPositionCursor = textBox1.SelectionStart;
+            //    textBox1.Text = textBox1.Text.Remove(textBox1.SelectionStart, textBox1.SelectionLength);
+            //    textBox1.SelectionStart = oldPositionCursor;
+            //}
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            // Determine if last operation can be undone in text box.
+            if (textBox1.CanUndo == true)
+            {
+                // Undo the last operation.
+                textBox1.Undo();
+                // Clear the undo buffer to prevent last action from being redone.
+                textBox1.ClearUndo();
+            }
+        }
+
+        private void цвецФонаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void цветШрифтаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.ForeColor = colorDialog1.Color;
+            }
+        }
+
+        private void шрифтToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Font = fontDialog1.Font;
             }
         }
     }
