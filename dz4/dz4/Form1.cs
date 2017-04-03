@@ -95,6 +95,7 @@ namespace dz4
             if (resDialog == DialogResult.Cancel)
             {
                 saveFile = null;
+                openFile = null;
             }
         }
     }
