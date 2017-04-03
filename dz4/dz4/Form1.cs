@@ -22,10 +22,7 @@ namespace dz4
             InitializeComponent();
         }
 
-        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -95,7 +92,19 @@ namespace dz4
             if (resDialog == DialogResult.Cancel)
             {
                 saveFile = null;
-                openFile = null;
+                saveFile = null;
+            }
+        }
+
+        private void выделитьВсеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text!="")
+            {
+                textBox1.SelectAll();
+            }
+            else
+            {
+                MessageBox.Show("Пусто");
             }
         }
     }
