@@ -65,8 +65,8 @@ namespace dz5_2
                 {
                     MessageBox.Show(e.Message);
                 }
-                //Разрешаем перерисовку иерархического представления.
-                
+                listView1.View = View.List;
+
             }
         }
         private void BuildTree(DirectoryInfo directoryInfo, ListView addInMe)
