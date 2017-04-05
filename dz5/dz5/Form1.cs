@@ -14,7 +14,7 @@ namespace dz5
 
     public partial class Form1 : Form
     {
-        TreeNode tn;
+        
         DirectoryInfo di;
         public Form1()
         {
