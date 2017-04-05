@@ -89,7 +89,8 @@ namespace dz5
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
 
-                if (FileAttributes.System == (subdir.Attributes & FileAttributes.System))
+                if (FileAttributes.System == (subdir.Attributes & FileAttributes.System)||
+                    FileAttributes.Hidden == (subdir.Attributes & FileAttributes.Hidden))
                 {
                     continue;
                 }
