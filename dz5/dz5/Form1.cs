@@ -18,15 +18,19 @@ namespace dz5
         DirectoryInfo di;
         public Form1()
         {
-
             InitializeComponent();
-            DriveInfo[] allDrives = DriveInfo.GetDrives();
-            try
-            {
-                foreach (DriveInfo drive in allDrives)
-                {
-                    string[] root = Directory.GetDirectories(Convert.ToString(allDrives[1] /*drive*/), "*.*", SearchOption.TopDirectoryOnly);
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
 
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                treeView1.BeginUpdate();
+                try
+                {
+                    //foreach (DriveInfo drive in allDrives)
+                    //{
+                    //string[] root = Directory.GetDirectories(Convert.ToString(allDrives[1] /*drive*/), "*.*", SearchOption.TopDirectoryOnly);
+                    string[] root = Directory.GetDirectories(fbd.SelectedPath);
                     if (root.Rank > 1)
                     {
                         //Проходим по всем полученным подкаталогам.
@@ -54,18 +58,21 @@ namespace dz5
                     }
                     else
                     {
-                        di = new DirectoryInfo(Convert.ToString(Convert.ToString(allDrives[1])/*drive*/));
+                        di = new DirectoryInfo(fbd.SelectedPath);
+                        //di = new DirectoryInfo(Convert.ToString(Convert.ToString(allDrives[1])/*drive*/));
                         BuildTree(di, treeView1.Nodes);
                     }
-                    //tn = new TreeNode(Convert.ToString(drive));
-                    //treeView1.Nodes.Add(tn);
+                    //}
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                //Разрешаем перерисовку иерархического представления.
+                treeView1.EndUpdate();
             }
-            catch (Exception e)
-            {
-
-                MessageBox.Show(e.Message);
-            }
+            //DriveInfo[] allDrives = DriveInfo.GetDrives();
+            
         }
 
         private void BuildTree(DirectoryInfo directoryInfo, TreeNodeCollection addInMe)
@@ -81,7 +88,7 @@ namespace dz5
             //Перебираем папки.
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
-                
+
                 if (FileAttributes.System == (subdir.Attributes & FileAttributes.System))
                 {
                     continue;
