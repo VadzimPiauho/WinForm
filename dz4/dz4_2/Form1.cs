@@ -73,7 +73,7 @@ namespace dz4_2
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             indexPath--;
-            if (indexPath > 0)
+            if (indexPath+1 > 0)
             {
                 String mypath = path[indexPath];
                 path.Remove(path[indexPath + 1]);
@@ -104,5 +104,7 @@ namespace dz4_2
                 }
             }
         }
+
+     
     }
 }
