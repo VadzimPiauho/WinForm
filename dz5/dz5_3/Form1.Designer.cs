@@ -1,4 +1,4 @@
-﻿namespace dz5_2
+﻿namespace dz5_3
 {
     partial class Form1
     {
@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 606);
+            this.ClientSize = new System.Drawing.Size(688, 457);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
