@@ -23,44 +23,48 @@ namespace dz5
             DriveInfo[] allDrives = DriveInfo.GetDrives();
             try
             {
-                foreach (DriveInfo drive in DriveInfo.GetDrives())
+                foreach (DriveInfo drive in allDrives)
                 {
-                    string[] root = System.IO.Directory.GetDirectories(Convert.ToString(/*allDrives[1]*/ drive));
-                if (root.Rank > 1)
-                {
-                    //Проходим по всем полученным подкаталогам.
-                    foreach (string s in root)
+                    string[] root = Directory.GetDirectories(Convert.ToString(allDrives[1] /*drive*/), "*.*", SearchOption.TopDirectoryOnly);
+
+                    if (root.Rank > 1)
                     {
-                        try
+                        //Проходим по всем полученным подкаталогам.
+                        foreach (string s in root)
                         {
-                            //Заносим в переменную информацию
-                            //о текущей директории.
-                            di = new DirectoryInfo(s);
-                            //Вызов метода сканирования с
-                            //передачей в качестве параметра, информации
-                            //о текущей директории и объект 
-                            //System.Windows.Forms.TreeNodeCollection,
-                            //который предоставляет узлы
-                            //дерева, назначенные элементу управления 
-                            //иерархического представления.
-                            BuildTree(di, treeView1.Nodes);
-                        }
-                        catch
-                        {
+                            try
+                            {
+                                //Заносим в переменную информацию
+                                //о текущей директории.
+                                di = new DirectoryInfo(s);
+                                //Вызов метода сканирования с
+                                //передачей в качестве параметра, информации
+                                //о текущей директории и объект 
+                                //System.Windows.Forms.TreeNodeCollection,
+                                //который предоставляет узлы
+                                //дерева, назначенные элементу управления 
+                                //иерархического представления.
+                                BuildTree(di, treeView1.Nodes);
+                            }
+                            catch (Exception e)
+                            {
+                                MessageBox.Show(e.Message);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    di = new DirectoryInfo(Convert.ToString(/*Convert.ToString(allDrives[1])*/drive));
-                    BuildTree(di, treeView1.Nodes);
-                }
-                //tn = new TreeNode(Convert.ToString(drive));
-                //treeView1.Nodes.Add(tn);
+                    else
+                    {
+                        di = new DirectoryInfo(Convert.ToString(Convert.ToString(allDrives[1])/*drive*/));
+                        BuildTree(di, treeView1.Nodes);
+                    }
+                    //tn = new TreeNode(Convert.ToString(drive));
+                    //treeView1.Nodes.Add(tn);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -77,6 +81,12 @@ namespace dz5
             //Перебираем папки.
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
+                
+                if (FileAttributes.System == (subdir.Attributes & FileAttributes.System))
+                {
+                    continue;
+                }
+                var x = subdir.GetAccessControl();
                 //Запускам процесс получения папок и фалов 
                 //с текущей найденной директории.
                 BuildTree(subdir, curNode.Nodes);
@@ -85,6 +95,10 @@ namespace dz5
             //Перебираем файлы
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
+                if (FileAttributes.System == (file.Attributes & FileAttributes.System))
+                {
+                    continue;
+                }
                 //Добавляем новый узел в коллекцию Nodes
                 //С именем текущей директории и указанием ключа 
                 //со значением "File".
