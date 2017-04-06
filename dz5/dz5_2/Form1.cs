@@ -17,73 +17,38 @@ namespace dz5_2
         public Form1()
         {
             InitializeComponent();
+            listView1.SetBounds(400, 20, 300, 200);
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                
                 try
                 {
-                    //foreach (DriveInfo drive in allDrives)
-                    //{
-                    //string[] root = Directory.GetDirectories(Convert.ToString(allDrives[1] /*drive*/), "*.*", SearchOption.TopDirectoryOnly);
-                    string[] root = Directory.GetDirectories(fbd.SelectedPath);
-                    if (root.Rank > 1)
-                    {
-                        //Проходим по всем полученным подкаталогам.
-                        foreach (string s in root)
-                        {
-                            try
-                            {
-                                //Заносим в переменную информацию
-                                //о текущей директории.
-                                di = new DirectoryInfo(s);
-                                //Вызов метода сканирования с
-                                //передачей в качестве параметра, информации
-                                //о текущей директории и объект 
-                                //System.Windows.Forms.TreeNodeCollection,
-                                //который предоставляет узлы
-                                //дерева, назначенные элементу управления 
-                                //иерархического представления.
-                                BuildTree(di, listView1);
-                            }
-                            catch (Exception e)
-                            {
-                                MessageBox.Show(e.Message);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        di = new DirectoryInfo(fbd.SelectedPath);
-                        //di = new DirectoryInfo(Convert.ToString(Convert.ToString(allDrives[1])/*drive*/));
-                        BuildTree(di, listView1);
-                    }
-                    //}
+                    //string[] root = Directory.GetDirectories(fbd.SelectedPath);
+                    di = new DirectoryInfo(fbd.SelectedPath);
+                    Build(di, listView1);
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
                 listView1.View = View.List;
-
             }
         }
-        private void BuildTree(DirectoryInfo directoryInfo, ListView addInMe)
+        private void Build(DirectoryInfo directoryInfo, ListView addInMe)
         {
-            
+            int i = 0;
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
-
                 if (FileAttributes.System == (subdir.Attributes & FileAttributes.System) ||
                     FileAttributes.Hidden == (subdir.Attributes & FileAttributes.Hidden))
                 {
                     continue;
                 }
+                //imageList1.Images.Add(subdir.Extension, (Icon)Icon.ExtractAssociatedIcon(subdir.FullName));
                 var x = subdir.GetAccessControl();
-                //Запускам процесс получения папок и фалов 
-                //с текущей найденной директории.
                 addInMe.Items.Add(subdir.Name);
+                //i++;
             }
 
             //Перебираем файлы
@@ -93,12 +58,10 @@ namespace dz5_2
                 {
                     continue;
                 }
-                //Добавляем новый узел в коллекцию Nodes
-                //С именем текущей директории и указанием ключа 
-                //со значением "File".
-                addInMe.Items.Add(file.Name);
-
-                //curNode.Nodes.Add("File", file.Name, 
+                imageList1.Images.Add(file.Extension, (Icon)Icon.ExtractAssociatedIcon(file.FullName));
+                addInMe.Items.Add(file.Name, i);
+                i++;
+                //addInMe.Items.Add("File", file.Name, 
                 //тут можно указать номер картинки для узла из imageCollection);  
             }
         }
@@ -106,6 +69,36 @@ namespace dz5_2
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void largeIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.View = View.LargeIcon;
+        }
+
+        private void smallIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.View = View.SmallIcon;
+        }
+
+        private void tileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.View = View.Tile;
+        }
+
+        private void listToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.View = View.List;
+        }
+
+        private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.View = View.Details;
         }
     }
 }
