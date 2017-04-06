@@ -14,7 +14,6 @@ namespace dz5
 
     public partial class Form1 : Form
     {
-        
         DirectoryInfo di;
         public Form1()
         {
@@ -72,7 +71,7 @@ namespace dz5
                 treeView1.EndUpdate();
             }
             //DriveInfo[] allDrives = DriveInfo.GetDrives();
-            
+
         }
 
         private void BuildTree(DirectoryInfo directoryInfo, TreeNodeCollection addInMe)
@@ -89,7 +88,7 @@ namespace dz5
             foreach (DirectoryInfo subdir in directoryInfo.GetDirectories())
             {
 
-                if (FileAttributes.System == (subdir.Attributes & FileAttributes.System)||
+                if (FileAttributes.System == (subdir.Attributes & FileAttributes.System) ||
                     FileAttributes.Hidden == (subdir.Attributes & FileAttributes.Hidden))
                 {
                     continue;
