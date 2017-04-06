@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Permissions;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace dz5_4
         public Form1()
         {
             InitializeComponent();
+
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
             DriveInfo[] allDrives = DriveInfo.GetDrives();
@@ -89,16 +91,24 @@ namespace dz5_4
             //Перебираем папки.
             foreach (var subdir in root)
             {
-                DirectoryInfo dir = new DirectoryInfo(subdir);
-                DirectorySecurity ds = dir.GetAccessControl(AccessControlSections.All);
-                if (File.Exists(subdir)==false)
-                {
-                    continue;
-                }
-                //if ((subdir.Contains("$") || subdir.Contains("Document")|| subdir.Contains("Cach") || subdir.Contains("Policy") || subdir.Contains("Crash") || subdir.Contains("Application") || subdir.Contains("Desktop") || subdir.Contains("Favorites") || subdir.Contains("Microsoft") || subdir.Contains("Data") || subdir.Contains("System") || subdir.Contains("Start") || subdir.Contains("Symantec") || subdir.Contains("User") || subdir.Contains("Windows")) ==true)
+                //DirectoryInfo dir = new DirectoryInfo(subdir);
+                // var ds = dir.GetAccessControl();
+                //foreach (FileSystemAccessRule item in ds.GetAccessRules(true, true, typeof(NTAccount)))
+                //{
+                //    if (item.AccessControlType == AccessControlType.Deny)
+                //    {
+
+                //    }
+                //}
+
+                //if (new FileInfo(subdir).IsReadOnly == true)
                 //{
                 //    continue;
                 //}
+                if ((subdir.Contains("$") || subdir.Contains("Document") || subdir.Contains("Cach") || subdir.Contains("Policy") || subdir.Contains("Crash") || subdir.Contains("Application") || subdir.Contains("Desktop") || subdir.Contains("Favorites") || subdir.Contains("Microsoft") || subdir.Contains("Data") || subdir.Contains("System") || subdir.Contains("Start") || subdir.Contains("Symantec") || subdir.Contains("User") || subdir.Contains("Windows") || subdir.Contains("Config") || subdir.Contains("inetpub") || subdir.Contains("microsoft") || subdir.Contains("Recovery")) == true)
+                {
+                    continue;
+                }
                 //Запускам процесс получения папок и фалов 
                 //с текущей найденной директории.
                 BuildTree(subdir, curNode.Nodes);
@@ -121,6 +131,37 @@ namespace dz5_4
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+
+
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+
+            if (treeView1.SelectedNode.FullPath != null)
+            {
+                string n = treeView1.SelectedNode.FullPath;
+                ListViewItem liv;
+                if (File.Exists(n))
+                {
+                    FileInfo fl = new FileInfo(n);
+                    liv = new ListViewItem(fl.CreationTime.ToString());
+                    liv.SubItems.Add(fl.Length.ToString());
+                    liv.SubItems.Add("File");
+                    liv.SubItems.Add("-");
+                    listView1.Items.Add(liv);
+                    
+                }
+                else if (Directory.Exists(n))
+                {
+                    DirectoryInfo fl = new DirectoryInfo(n);
+                    liv = new ListViewItem(fl.CreationTime.ToString());
+                    liv.SubItems.Add("-");
+                    liv.SubItems.Add("Directory");
+                    liv.SubItems.Add("-");
+                    listView1.Items.Add(liv);
+                }
+            }
         }
     }
 }
