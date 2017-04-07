@@ -128,40 +128,60 @@ namespace dz5_4
             }
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
 
 
         }
 
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-
             if (treeView1.SelectedNode.FullPath != null)
             {
-                string n = treeView1.SelectedNode.FullPath;
+                string n = treeView1.SelectedNode.Text;
                 ListViewItem liv;
+                //string[] root = Directory.GetDirectories(n);
+                //string[] rootFile = Directory.GetFiles(n);
                 if (File.Exists(n))
                 {
                     FileInfo fl = new FileInfo(n);
                     liv = new ListViewItem(fl.CreationTime.ToString());
+                    liv.SubItems.Add(fl.Name);
                     liv.SubItems.Add(fl.Length.ToString());
                     liv.SubItems.Add("File");
-                    liv.SubItems.Add("-");
+                    liv.SubItems.Add("1");
+                    liv.SubItems.Add(File.GetAttributes(n).ToString());
                     listView1.Items.Add(liv);
-                    
                 }
-                else if (Directory.Exists(n))
+                else if (System.IO.Directory.Exists(n))
                 {
+                    long Size = 0;
                     DirectoryInfo fl = new DirectoryInfo(n);
                     liv = new ListViewItem(fl.CreationTime.ToString());
-                    liv.SubItems.Add("-");
+                    liv.SubItems.Add(fl.Name);
+                    //DirectoryInfo[] dis = fl.GetDirectories();
+                    //foreach (DirectoryInfo di in dis)
+                    //{
+                    //    Size = DirSize(di, Size);
+                    //}
+                    liv.SubItems.Add("---");
                     liv.SubItems.Add("Directory");
-                    liv.SubItems.Add("-");
+                    liv.SubItems.Add((fl.GetFiles().Length + fl.GetDirectories().Length).ToString());
+                    liv.SubItems.Add(File.GetAttributes(n).ToString());
                     listView1.Items.Add(liv);
                 }
             }
+        }
+        public static long DirSize(DirectoryInfo d, long Size)
+        {
+            // Add file sizes.
+            FileInfo[] fis = d.GetFiles();
+            foreach (FileInfo fi in fis)
+            {
+                Size += fi.Length;
+            }
+            return Size;
+
         }
     }
 }
