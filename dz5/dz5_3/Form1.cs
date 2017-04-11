@@ -38,6 +38,9 @@ namespace dz5_3
                 e.Effect = DragDropEffects.Copy;
         }
 
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

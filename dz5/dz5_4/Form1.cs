@@ -82,50 +82,61 @@ namespace dz5_4
             //Добавляем новый узел в коллекцию Nodes
             //с именем текущей директории и указанием ключа 
             //со значением "Folder".
-            TreeNode curNode = addInMe.Add("Folder", directoryInfo);
-
-            string[] root = Directory.GetDirectories(directoryInfo);
-            //addInMe.Add(directoryInfo.FullName, directoryInfo.Name, 
-            //тут можно указать номер картинки для узла из imageCollection);
-
-            //Перебираем папки.
-            foreach (var subdir in root)
+            try
             {
-                //DirectoryInfo dir = new DirectoryInfo(subdir);
-                // var ds = dir.GetAccessControl();
-                //foreach (FileSystemAccessRule item in ds.GetAccessRules(true, true, typeof(NTAccount)))
-                //{
-                //    if (item.AccessControlType == AccessControlType.Deny)
-                //    {
+                TreeNode curNode = addInMe.Add("Folder", directoryInfo);
 
-                //    }
-                //}
+                string[] root = Directory.GetDirectories(directoryInfo);
+                //addInMe.Add(directoryInfo.FullName, directoryInfo.Name, 
+                //тут можно указать номер картинки для узла из imageCollection);
 
-                //if (new FileInfo(subdir).IsReadOnly == true)
-                //{
-                //    continue;
-                //}
-                if ((subdir.Contains("$") || subdir.Contains("Document") || subdir.Contains("Cach") || subdir.Contains("Policy") || subdir.Contains("Crash") || subdir.Contains("Application") || subdir.Contains("Desktop") || subdir.Contains("Favorites") || subdir.Contains("Microsoft") || subdir.Contains("Data") || subdir.Contains("System") || subdir.Contains("Start") || subdir.Contains("Symantec") || subdir.Contains("User") || subdir.Contains("Windows") || subdir.Contains("Config") || subdir.Contains("inetpub") || subdir.Contains("microsoft") || subdir.Contains("Recovery")) == true)
+                //Перебираем папки.
+                foreach (var subdir in root)
                 {
-                    continue;
+                    //DirectoryInfo dir = new DirectoryInfo(subdir);
+                    // var ds = dir.GetAccessControl();
+                    //foreach (FileSystemAccessRule item in ds.GetAccessRules(true, true, typeof(NTAccount)))
+                    //{
+                    //    if (item.AccessControlType == AccessControlType.Deny)
+                    //    {
+
+                    //    }
+                    //}
+
+                    //if (new FileInfo(subdir).IsReadOnly == true)
+                    //{
+                    //    continue;
+                    //}
+
+                    //if ((subdir.Contains("$") || subdir.Contains("Document") || subdir.Contains("Cach") || subdir.Contains("Policy") || subdir.Contains("Crash") || subdir.Contains("Application") || subdir.Contains("Desktop") || subdir.Contains("Favorites") || subdir.Contains("Microsoft") || subdir.Contains("Data") || subdir.Contains("System") || subdir.Contains("Start") || subdir.Contains("Symantec") || subdir.Contains("User") || subdir.Contains("Windows") || subdir.Contains("Config") || subdir.Contains("inetpub") || subdir.Contains("microsoft") || subdir.Contains("Recovery")) == true)
+                    //{
+                    //    continue;
+                    //}
+
+                    //Запускам процесс получения папок и фалов 
+                    //с текущей найденной директории.
+                    BuildTree(subdir, curNode.Nodes);
                 }
-                //Запускам процесс получения папок и фалов 
-                //с текущей найденной директории.
-                BuildTree(subdir, curNode.Nodes);
+                string[] rootFile = Directory.GetFiles(directoryInfo);
+                //Перебираем файлы
+                foreach (var file in rootFile)
+                {
+
+                    //Добавляем новый узел в коллекцию Nodes
+                    //С именем текущей директории и указанием ключа 
+                    //со значением "File".
+                    curNode.Nodes.Add("File", file);
+
+                    //curNode.Nodes.Add("File", file.Name, 
+                    //тут можно указать номер картинки для узла из imageCollection);  
+                }
             }
-            string[] rootFile = Directory.GetFiles(directoryInfo);
-            //Перебираем файлы
-            foreach (var file in rootFile)
+            catch
             {
 
-                //Добавляем новый узел в коллекцию Nodes
-                //С именем текущей директории и указанием ключа 
-                //со значением "File".
-                curNode.Nodes.Add("File", file);
 
-                //curNode.Nodes.Add("File", file.Name, 
-                //тут можно указать номер картинки для узла из imageCollection);  
             }
+            
         }
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
