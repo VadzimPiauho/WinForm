@@ -52,10 +52,18 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="WpfCustomControlLibraryTemp\CustomControl1.cs" />
-    <Compile Include="WpfCustomControlLibraryTemp\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
-    <Compile Include="WpfCustomControlLibraryTemp\obj\Debug\UserControl1.g.cs" />
-    <Compile Include="WpfCustomControlLibraryTemp\obj\Release\GeneratedInternalTypeHelper.g.cs" />
-    <Compile Include="WpfCustomControlLibraryTemp\obj\Release\UserControl1.g.cs" />
+    <Compile Include="WpfCustomControlLibraryTemp\obj\Debug\GeneratedInternalTypeHelper.g.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="WpfCustomControlLibraryTemp\obj\Debug\UserControl1.g.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="WpfCustomControlLibraryTemp\obj\Release\GeneratedInternalTypeHelper.g.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="WpfCustomControlLibraryTemp\obj\Release\UserControl1.g.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="WpfCustomControlLibraryTemp\Properties\AssemblyInfo.cs" />
     <Compile Include="WpfCustomControlLibraryTemp\Properties\Resources.Designer.cs" />
     <Compile Include="WpfCustomControlLibraryTemp\Properties\Settings.Designer.cs" />
@@ -84,14 +92,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WpfCustomControlLibraryTemp\obj\Debug\CoreCompileInputs.cache" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Debug\UserControl1.baml" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Debug\WpfCustomControlLibraryTemp_MarkupCompile.cache" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Debug\WpfCustomControlLibraryTemp_MarkupCompile.lref" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Release\CoreCompileInputs.cache" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Release\UserControl1.baml" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Release\WpfCustomControlLibraryTemp_MarkupCompile.cache" />
-    <None Include="WpfCustomControlLibraryTemp\obj\Release\WpfCustomControlLibraryTemp_MarkupCompile.lref" />
+    <None Include="WpfCustomControlLibraryTemp\obj\Debug\CoreCompileInputs.cache">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Debug\UserControl1.baml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Debug\WpfCustomControlLibraryTemp_MarkupCompile.cache">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Debug\WpfCustomControlLibraryTemp_MarkupCompile.lref">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Release\CoreCompileInputs.cache">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Release\UserControl1.baml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Release\WpfCustomControlLibraryTemp_MarkupCompile.cache">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WpfCustomControlLibraryTemp\obj\Release\WpfCustomControlLibraryTemp_MarkupCompile.lref">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="WpfCustomControlLibraryTemp\Properties\Settings.settings" />
   </ItemGroup>
   <ItemGroup>
